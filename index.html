@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HindiAnimestuff — Hindi Dubbed Anime, Movies &amp; Series</title>
+<link rel="icon" type="image/png" href="/NoBack.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0d0e12;
+  --surface:#17191f;
+  --surface-hi:#20232b;
+  --line: rgba(255,255,255,0.08);
+  --accent:#0ea5e9;
+  --accent-hi:#38bdf8;
+  --accent-dim: rgba(14,165,233,0.15);
+  --gold:#f2b544;
+  --text:#f4f4f5;
+  --text-dim:#9a9ba3;
+  --text-faint:#65666f;
+  --ok:#22c55e;
+  --ok-dim: rgba(34,197,94,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--void);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+}
+::selection{background:var(--accent);color:#fff;}
+::-webkit-scrollbar{height:8px;width:8px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--surface-hi);border-radius:10px;}
+
+a{color:inherit;}
+
+/* ---------------- NAVBAR ---------------- */
+.navbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 28px;
+  background:rgba(13,14,18,0.72);
+  backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.brand-mark{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  flex:0 0 auto;
+}
+.brand-logo{
+  height:34px;
+  width:auto;
+  display:block;
+  background:transparent;
+}
+
+.nav-search{
+  flex:1 1 auto;
+  max-width:420px;
+  position:relative;
+}
+.nav-search input{
+  width:100%;
+  background:var(--surface);
+  border:1px solid var(--line);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-size:0.86rem;
+  padding:9px 14px 9px 36px;
+  border-radius:7px;
+  outline:none;
+  transition:border-color 0.2s ease, background 0.2s ease;
+}
+.nav-search input::placeholder{color:var(--text-faint);}
+.nav-search input:focus{border-color:var(--accent);background:var(--surface-hi);}
+.nav-search svg{
+  position:absolute;left:12px;top:50%;
+  transform:translateY(-50%);
+  width:14px;height:14px;
+  opacity:0.5;
+  pointer-events:none;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  flex:0 0 auto;
+}
+.nav-links a{
+  text-decoration:none;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.02em;
+  color:var(--text-dim);
+  transition:color 0.15s ease;
+  display:inline-flex;
+  align-items:center;
+}
+.nav-links a:hover{color:var(--text);}
+
+.nav-count{
+  background:var(--accent-dim);
+  color:var(--accent-hi);
+  font-size:0.68rem;
+  font-weight:700;
+  padding:1px 7px;
+  border-radius:100px;
+  margin-left:5px;
+  letter-spacing:0;
+}
+
+.menu-btn{
+  display:none;
+  width:36px;height:36px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:var(--surface);
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+.menu-btn span{
+  width:16px;height:1.5px;
+  background:var(--text-dim);
+  border-radius:1px;
+  transition:all 0.2s ease;
+}
+.menu-btn.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
+.menu-btn.open span:nth-child(2){opacity:0;}
+.menu-btn.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
+
+.menu-panel{
+  position:absolute;top:64px;right:20px;
+  background:var(--surface-hi);
+  border:1px solid var(--line);
+  border-radius:10px;
+  min-width:190px;
+  padding:8px;
+  display:none;
+  flex-direction:column;
+  gap:2px;
+  box-shadow:0 18px 44px -12px rgba(0,0,0,0.7);
+  z-index:60;
+}
+.menu-panel.open{display:flex;}
+.menu-panel a{
+  color:var(--text-dim);
+  text-decoration:none;
+  font-size:0.85rem;
+  font-weight:500;
+  padding:10px 12px;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.menu-panel a:hover{background:var(--surface);color:var(--text);}
+
+@media (max-width:760px){
+  .nav-links{display:none;}
+  .menu-btn{display:flex;}
+  .nav-search{max-width:none;}
+}
+
+/* ---------------- HERO ---------------- */
+.hero{
+  position:relative;
+  min-height:52vh;
+  display:flex;
+  align-items:flex-end;
+  padding:0 28px 40px;
+  overflow:hidden;
+  margin:14px 14px 0;
+  border-radius:16px;
+  border:1px solid var(--line);
+  box-shadow:0 24px 50px -24px rgba(0,0,0,0.6);
+}
+.hero-bg-layer{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center 20%;
+  filter:saturate(1.05);
+  transform:scale(1.02);
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.hero-bg-layer.active{opacity:1;}
+.hero-content{
+  transition:opacity 0.4s ease, transform 0.4s ease;
+}
+.hero-content.fade-out{
+  opacity:0;
+  transform:translateY(8px);
+}
+.hero-dots{
+  position:absolute;
+  bottom:16px;right:24px;
+  display:flex;
+  gap:6px;
+  z-index:3;
+}
+.hero-dot{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.3);
+  cursor:pointer;
+  transition:background 0.2s ease, transform 0.2s ease;
+  border:none;
+  padding:0;
+}
+.hero-dot.active{background:var(--accent-hi);transform:scale(1.35);}
+.hero-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(0deg, var(--void) 4%, rgba(13,14,18,0.6) 45%, rgba(13,14,18,0.18) 75%),
+    linear-gradient(90deg, rgba(13,14,18,0.92) 0%, rgba(13,14,18,0.4) 55%, rgba(13,14,18,0.18) 100%);
+}
+.hero-icon-badge{
+  width:22px;height:22px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid var(--accent-hi);
+  vertical-align:middle;
+}
+.sharingan-spin{animation:spin-slow 6s linear infinite;}
+@keyframes spin-slow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:640px;
+}
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+.hero-eyebrow::before{
+  content:'';
+  width:8px;height:8px;
+  background:var(--gold);
+  border-radius:2px;
+}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.4rem,6vw,4.2rem);
+  line-height:0.98;
+  letter-spacing:0.01em;
+  margin-bottom:14px;
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  font-size:0.82rem;
+  color:var(--text-dim);
+  margin-bottom:16px;
+}
+.hero-meta .pill{
+  border:1px solid var(--line);
+  padding:3px 10px;
+  border-radius:100px;
+  font-weight:600;
+  color:var(--text);
+}
+.hero-meta .rating{color:var(--gold);font-weight:700;}
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'Inter',sans-serif;
+  font-size:0.88rem;
+  font-weight:700;
+  padding:11px 22px;
+  border-radius:7px;
+  text-decoration:none;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-hi);}
+.btn-ghost{background:rgba(255,255,255,0.06);color:var(--text);border-color:var(--line);}
+.btn-ghost:hover{background:rgba(255,255,255,0.12);}
+
+/* ---------------- PILL NAV (Movies / Series) ---------------- */
+.pill-nav{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  padding:20px 28px;
+  border-bottom:1px solid var(--line);
+}
+.pill-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:var(--surface-hi);
+  border:1px solid var(--line);
+  color:var(--text);
+  text-decoration:none;
+  font-weight:700;
+  font-size:0.92rem;
+  padding:12px 26px;
+  border-radius:100px;
+  transition:all 0.2s ease;
+  cursor:pointer;
+}
+.pill-btn svg{width:20px;height:20px;flex:0 0 auto;}
+.pill-btn:hover{border-color:var(--accent-hi);background:var(--surface);}
+.pill-btn.active{background:var(--accent);border-color:var(--accent);}
+
+/* ---------------- FILTER ROW ---------------- */
+.filter-row-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:18px 28px;
+  border-bottom:1px solid var(--line);
+}
+.genre-drawer-btn{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;height:38px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--text-dim);
+  cursor:pointer;
+}
+.genre-drawer-btn:hover{border-color:var(--accent-hi);color:var(--text);}
+.genre-drawer-btn svg{width:18px;height:18px;}
+.filter-row-wrap .filter-row{
+  padding:0;
+  border-bottom:none;
+  flex:1 1 auto;
+}
+.filter-row{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:18px 28px;
+  border-bottom:1px solid var(--line);
+}
+
+/* ---------------- GENRE DRAWER ---------------- */
+.genre-drawer-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.6);
+  z-index:90;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.2s ease;
+}
+.genre-drawer-overlay.open{opacity:1;pointer-events:auto;}
+.genre-drawer{
+  position:fixed;top:0;right:0;
+  height:100%;
+  width:min(360px,86vw);
+  background:var(--surface);
+  border-left:1px solid var(--line);
+  z-index:91;
+  transform:translateX(100%);
+  transition:transform 0.28s ease;
+  overflow-y:auto;
+  padding:28px 22px;
+}
+.genre-drawer.open{transform:translateX(0);}
+.genre-drawer-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;
+  letter-spacing:0.1em;
+  color:var(--gold);
+  text-transform:uppercase;
+  padding-bottom:12px;
+  border-bottom:3px solid var(--gold);
+  margin-bottom:20px;
+  display:inline-block;
+}
+.genre-drawer-close{
+  position:absolute;top:22px;right:20px;
+  background:none;border:none;
+  color:var(--text-dim);
+  font-size:1.5rem;
+  cursor:pointer;
+  line-height:1;
+}
+.genre-drawer-close:hover{color:var(--text);}
+.genre-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+}
+.genre-grid-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 10px;
+  border-radius:8px;
+  color:var(--text-dim);
+  background:none;
+  border:none;
+  font-size:0.9rem;
+  font-weight:500;
+  font-family:'Inter',sans-serif;
+  cursor:pointer;
+  text-align:left;
+  transition:background 0.15s ease, color 0.15s ease;
+}
+.genre-grid-item:hover{background:var(--surface-hi);color:var(--text);}
+.genre-grid-item.active{color:var(--accent-hi);background:var(--accent-dim);}
+
+/* ---------------- SEARCH RESULT EXTRAS ---------------- */
+.genre-chip-mini{
+  border:1px solid var(--line);
+  padding:1px 8px;
+  border-radius:100px;
+  font-size:0.66rem;
+  color:var(--text-dim);
+}
+.result-type-badge{
+  position:absolute;top:8px;left:8px;
+  background:rgba(13,14,18,0.75);
+  backdrop-filter:blur(4px);
+  border:1px solid var(--line);
+  font-size:0.6rem;
+  font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--accent-hi);
+  padding:3px 8px;
+  border-radius:100px;
+}
+.filter-chip{
+  flex:0 0 auto;
+  font-size:0.74rem;
+  letter-spacing:0.03em;
+  font-weight:600;
+  color:var(--text-dim);
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:8px 16px;
+  border-radius:100px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all 0.18s ease;
+}
+.filter-chip:hover{border-color:var(--accent-hi);color:var(--text);}
+.filter-chip.active{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+}
+
+/* ---------------- SECTIONS ---------------- */
+main{
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 0 40px;
+}
+.section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:14px;
+  padding:30px 28px 14px;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;
+  letter-spacing:0.02em;
+}
+.section-sub{
+  font-size:0.76rem;
+  color:var(--text-faint);
+  white-space:nowrap;
+}
+
+/* Latest uploads: ranked horizontal scroll */
+.rank-row{
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  padding:4px 28px 10px;
+  scroll-snap-type:x proximity;
+}
+.rank-item{
+  flex:0 0 auto;
+  display:flex;
+  align-items:flex-end;
+  gap:0;
+  text-decoration:none;
+  color:inherit;
+  scroll-snap-align:start;
+}
+.rank-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:4.2rem;
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--line);
+  margin-right:-14px;
+  z-index:1;
+  transition:color 0.2s ease, -webkit-text-stroke 0.2s ease;
+}
+.rank-item:hover .rank-num{-webkit-text-stroke:1.5px var(--accent-hi);}
+.rank-poster{
+  width:108px;height:152px;
+  border-radius:7px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  position:relative;
+  z-index:2;
+  background:linear-gradient(160deg,var(--surface-hi),var(--surface));
+  flex:0 0 auto;
+  transition:border-color 0.2s ease, transform 0.2s ease;
+}
+.rank-item:hover .rank-poster{border-color:var(--accent-hi);transform:translateY(-3px);}
+.rank-poster img{width:100%;height:100%;object-fit:cover;display:block;}
+.rank-fallback{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;color:var(--accent-hi);opacity:0.5;
+  text-align:center;padding:8px;
+}
+
+/* Poster grid (franchise rows) */
+.anime-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:20px 14px;
+  padding:2px 28px 14px;
+}
+.poster-card{
+  text-decoration:none;
+  color:inherit;
+  width:100%;
+}
+.poster-thumb{
+  width:100%;
+  aspect-ratio:2/3;
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid var(--line);
+  background:linear-gradient(160deg,var(--surface-hi),var(--surface));
+  transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.poster-card:hover .poster-thumb{
+  border-color:var(--accent-hi);
+  transform:translateY(-4px);
+  box-shadow:0 14px 32px -10px rgba(14,165,233,0.4);
+}
+.poster-thumb img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.4s ease;
+}
+.poster-card:hover .poster-thumb img{transform:scale(1.06);}
+.poster-fallback{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;color:var(--accent-hi);opacity:0.5;
+  text-align:center;padding:8px;
+}
+/* bottom gradient so overlaid status/badge text stays legible over any art */
+.poster-thumb::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(0deg, rgba(13,14,18,0.92) 0%, rgba(13,14,18,0.15) 42%, rgba(13,14,18,0) 62%);
+  pointer-events:none;
+}
+.poster-status{
+  position:absolute;bottom:8px;left:8px;z-index:2;
+  background:var(--ok-dim);
+  color:var(--ok);
+  border:1px solid rgba(34,197,94,0.3);
+  font-size:0.6rem;
+  font-weight:700;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:6px;
+}
+.poster-badge{
+  position:absolute;top:8px;right:8px;z-index:2;
+  background:rgba(13,14,18,0.75);
+  backdrop-filter:blur(4px);
+  border:1px solid var(--line);
+  font-size:0.62rem;
+  font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--accent-hi);
+  padding:3px 8px;
+  border-radius:100px;
+}
+.poster-dl{
+  position:absolute;top:8px;left:8px;z-index:3;
+  width:26px;height:26px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--accent);
+  color:#fff;
+  border-radius:100px;
+  font-size:0.72rem;
+  opacity:0;
+  transform:translateY(-4px);
+  transition:opacity 0.18s ease, transform 0.18s ease;
+  box-shadow:0 6px 16px -4px rgba(14,165,233,0.6);
+}
+.poster-card:hover .poster-dl{opacity:1;transform:translateY(0);}
+.poster-meta{
+  margin-top:8px;
+}
+.poster-name{
+  font-size:0.85rem;
+  font-weight:700;
+  line-height:1.25;
+  margin-bottom:3px;
+}
+.poster-foot{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:0.72rem;
+  color:var(--text-dim);
+}
+.poster-foot .rating{color:var(--gold);font-weight:700;}
+
+.empty-state{
+  text-align:center;
+  color:var(--text-dim);
+  padding:60px 20px;
+  font-size:0.9rem;
+}
+
+/* ---------------- PAGINATION ---------------- */
+.pagination-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  padding:24px 20px 10px;
+}
+.pagination-btn{
+  font-size:0.78rem;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--text);
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:10px 22px;
+  border-radius:7px;
+  cursor:pointer;
+  transition:all 0.2s ease;
+}
+.pagination-btn:hover:not(:disabled){border-color:var(--accent-hi);background:var(--surface-hi);}
+.pagination-btn:disabled{opacity:0.3;cursor:not-allowed;}
+.page-indicator{font-size:0.82rem;color:var(--text-dim);font-weight:500;}
+
+/* ---------------- FOOTER ---------------- */
+footer{
+  text-align:center;
+  padding:40px 24px 0;
+  color:var(--text-faint);
+  font-size:0.8rem;
+  border-top:1px solid var(--line);
+  line-height:1.6;
+}
+.footer-logo{
+  height:26px;
+  width:auto;
+  margin-bottom:14px;
+}
+.footer-tagline{
+  max-width:420px;
+  margin:0 auto 28px;
+  color:var(--text-dim);
+  font-size:0.82rem;
+}
+.footer-cols{
+  display:flex;
+  justify-content:center;
+  gap:64px;
+  flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.footer-col h4{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;
+  letter-spacing:0.04em;
+  color:var(--text);
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+.footer-col a{
+  display:block;
+  text-decoration:none;
+  color:var(--text-dim);
+  font-size:0.82rem;
+  padding:4px 0;
+  transition:color 0.15s ease;
+}
+.footer-col a:hover{color:var(--accent-hi);}
+.footer-col p{
+  color:var(--text-dim);
+  font-size:0.82rem;
+  max-width:220px;
+}
+.footer-bottom{
+  border-top:1px solid var(--line);
+  padding:18px 24px;
+  font-size:0.72rem;
+  color:var(--text-faint);
+}
+.footer-bottom strong{color:var(--text);}
+
+/* ---------------- FAVORITE HEART ---------------- */
+.poster-fav{
+  position:absolute;bottom:8px;right:8px;z-index:3;
+  width:26px;height:26px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(13,14,18,0.75);
+  backdrop-filter:blur(4px);
+  border:1px solid var(--line);
+  border-radius:100px;
+  font-size:0.82rem;
+  line-height:1;
+  color:var(--text-dim);
+  cursor:pointer;
+  transition:all 0.15s ease;
+}
+.poster-fav:hover{color:#ff4d6d;border-color:#ff4d6d;transform:scale(1.08);}
+.poster-fav.active{color:#ff4d6d;background:rgba(255,77,109,0.16);border-color:#ff4d6d;}
+
+/* ---------------- POPULAR FRANCHISES ---------------- */
+.franchise-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:20px 14px;
+  padding:2px 28px 14px;
+}
+.franchise-card{
+  text-decoration:none;color:inherit;width:100%;
+}
+.franchise-poster{
+  width:100%;aspect-ratio:2/3;
+  border-radius:10px;overflow:hidden;position:relative;
+  border:1px solid var(--line);
+  background:linear-gradient(160deg,var(--surface-hi),var(--surface));
+  transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.franchise-card:hover .franchise-poster{
+  border-color:var(--gold);
+  transform:translateY(-4px);
+  box-shadow:0 14px 32px -10px rgba(242,181,68,0.35);
+}
+.franchise-poster img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;}
+.franchise-card:hover .franchise-poster img{transform:scale(1.06);}
+.franchise-info{margin-top:8px;}
+.franchise-name{font-size:0.85rem;font-weight:700;line-height:1.25;margin-bottom:3px;}
+.franchise-count{font-size:0.72rem;color:var(--text-dim);}
+
+/* ---------------- REQUEST CTA ---------------- */
+.cta-banner{
+  margin:34px 28px 10px;
+  padding:34px 28px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:linear-gradient(120deg, var(--accent-dim), rgba(242,181,68,0.08));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.cta-text h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;
+  letter-spacing:0.02em;
+  margin-bottom:4px;
+}
+.cta-text p{font-size:0.84rem;color:var(--text-dim);}
+
+/* ---------------- MOBILE BOTTOM NAV ---------------- */
+.mobile-bottom-nav{
+  display:none;
+  position:fixed;left:0;right:0;bottom:0;z-index:80;
+  background:rgba(13,14,18,0.92);
+  backdrop-filter:blur(16px) saturate(140%);
+  border-top:1px solid var(--line);
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+  align-items:center;
+  justify-content:space-around;
+}
+.mbn-item{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--text-faint);
+  text-decoration:none;
+  font-size:0.62rem;
+  font-weight:600;
+  background:none;border:none;
+  padding:6px 8px;
+  cursor:pointer;
+  transition:color 0.15s ease;
+}
+.mbn-item svg{width:20px;height:20px;}
+.mbn-item:hover, .mbn-item.active{color:var(--accent-hi);}
+
+@media (max-width:760px){
+  .mobile-bottom-nav{display:flex;}
+  body{padding-bottom:58px;}
+}
+
+@media (max-width:480px){
+  .hero{min-height:44vh;padding:0 18px 28px;}
+  .navbar{padding:12px 16px;}
+  .filter-row{padding:14px 16px;}
+  .section-head{padding:24px 16px 12px;}
+  .anime-grid{padding-left:16px;padding-right:16px;}
+  .rank-row{padding-left:16px;padding-right:16px;}
+  .franchise-grid{padding-left:16px;padding-right:16px;}
+  .cta-banner{margin:26px 16px 10px;padding:26px 20px;}
+  .footer-cols{gap:36px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/index.html" class="brand-mark">
+    <img src="/HindiAnimestuff.png" alt="HindiAnimestuff" class="brand-logo">
+  </a>
+  <div class="nav-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Search">
+  </div>
+  <div class="nav-links">
+    <a href="#latestSection">Latest</a>
+    <a href="#" id="cnt-animeseries-link">Anime Series <span class="nav-count" id="cnt-animeseries-desktop"></span></a>
+    <a href="#" id="cnt-animemovies-link-d">Anime Movies <span class="nav-count" id="cnt-animemovies-desktop"></span></a>
+    <a href="/movies.html">Movies <span class="nav-count" id="cnt-movies-desktop"></span></a>
+    <a href="/series.html">Series <span class="nav-count" id="cnt-series-desktop"></span></a>
+    <a href="about.html">About</a>
+    <a href="request.html">Request</a>
+    <a href="dmca.html">DMCA</a>
+  </div>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="menu-panel" id="menuPanel">
+    <a href="#" id="cnt-animeseries-link-m">Anime Series <span class="nav-count" id="cnt-animeseries-mobile"></span></a>
+    <a href="#" id="cnt-animemovies-link-m">Anime Movies <span class="nav-count" id="cnt-animemovies-mobile"></span></a>
+    <a href="/movies.html">Movies <span class="nav-count" id="cnt-movies-mobile"></span></a>
+    <a href="/series.html">Web Series <span class="nav-count" id="cnt-series-mobile"></span></a>
+    <a href="about.html">About</a>
+    <a href="request.html">Request Anime</a>
+    <a href="dmca.html">DMCA</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg-layer active" id="heroBgA"></div>
+  <div class="hero-bg-layer" id="heroBgB"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><img src="/kakashi.gif" alt="" class="hero-icon-badge">Now Streaming</div>
+    <div class="hero-title" id="heroTitle">—</div>
+    <div class="hero-meta" id="heroMeta"></div>
+    <div class="hero-actions" id="heroActions"></div>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+</section>
+
+<div class="pill-nav">
+  <a href="/index.html" class="pill-btn active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 4.5L18 9l-4.1 1.5L12 15l-1.9-4.5L6 9l4.1-1.5L12 3z"/><path d="M19 13l0.9 2.1L22 16l-2.1 0.9L19 19l-0.9-2.1L16 16l2.1-0.9L19 13z"/></svg>
+    Anime
+  </a>
+  <a href="/movies.html" class="pill-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="7" y1="5" x2="7" y2="19"/><line x1="17" y1="5" x2="17" y2="19"/><line x1="3" y1="10" x2="7" y2="10"/><line x1="3" y1="14" x2="7" y2="14"/><line x1="17" y1="10" x2="21" y2="10"/><line x1="17" y1="14" x2="21" y2="14"/></svg>
+    Movies
+  </a>
+  <a href="/series.html" class="pill-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Series
+  </a>
+</div>
+
+<section id="continueSection" style="display:none;">
+  <div class="section-head">
+    <span class="section-title">Continue Watching</span>
+    <span class="section-sub">Pick up where you left off</span>
+  </div>
+  <div class="anime-grid" id="continueList"></div>
+</section>
+
+<section id="trendingSection">
+  <div class="section-head">
+    <span class="section-title">↗ Trending</span>
+    <span class="section-sub">What everyone's watching right now</span>
+  </div>
+  <div class="rank-row" id="trendingList"></div>
+</section>
+
+<section id="topRatedSection">
+  <div class="section-head">
+    <span class="section-title">♔ Top Rated</span>
+    <span class="section-sub">Highest rated on HindiAnimestuff</span>
+  </div>
+  <div class="anime-grid" id="topRatedList"></div>
+</section>
+
+<div class="filter-row-wrap">
+  <button class="genre-drawer-btn" id="genreDrawerBtn" aria-label="Browse Genres">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+  </button>
+  <div class="filter-row" id="filterRow"></div>
+</div>
+
+<div class="genre-drawer-overlay" id="genreDrawerOverlay"></div>
+<div class="genre-drawer" id="genreDrawer">
+  <button class="genre-drawer-close" id="genreDrawerClose" aria-label="Close">&times;</button>
+  <span class="genre-drawer-title">Genres</span>
+  <div class="genre-grid" id="genreGrid"></div>
+</div>
+
+<main>
+  <section id="latestSection">
+    <div class="section-head">
+      <span class="section-title">Latest Uploads <img src="/Bleach.gif" alt="" class="hero-icon-badge" style="margin-left:6px;"></span>
+      <span class="section-sub">Fresh Hindi dubs, updated regularly</span>
+    </div>
+    <div class="rank-row" id="latestUploadsList"></div>
+  </section>
+
+  <section id="browseSection">
+    <div class="section-head">
+      <span class="section-title" id="browseTitle">All Anime <img src="/Sharingan.gif" alt="" class="hero-icon-badge sharingan-spin" style="margin-left:6px;"></span>
+      <span class="section-sub" id="browseSub"></span>
+    </div>
+    <div class="anime-grid" id="franchiseList"></div>
+  </section>
+</main>
+
+<div class="pagination-row">
+  <button class="pagination-btn" id="prevPageBtn">Previous</button>
+  <span class="page-indicator" id="pageIndicator">Page 1 of 1</span>
+  <button class="pagination-btn" id="nextPageBtn">Next</button>
+</div>
+
+<section id="franchisesSection">
+  <div class="section-head">
+    <span class="section-title">☄ Popular Franchises</span>
+    <span class="section-sub">Multi-season favorites</span>
+  </div>
+  <div class="franchise-grid" id="franchiseGridList"></div>
+</section>
+
+<section id="favoritesSection">
+  <div class="section-head">
+    <span class="section-title">ᥫ᭡ Favorites</span>
+    <span class="section-sub">Saved on this device</span>
+  </div>
+  <div class="anime-grid" id="favoritesList"></div>
+</section>
+
+<div class="cta-banner">
+  <div class="cta-text">
+    <h3>Can't find what you're looking for?</h3>
+    <p>Request an anime, movie, or series and we'll try to add it soon.</p>
+  </div>
+  <a href="request.html" class="btn btn-primary">Request Anime →</a>
+</div>
+
+<footer>
+  <img src="/HindiAnimestuff.png" alt="HindiAnimestuff" class="footer-logo">
+  <p class="footer-tagline">Your one-stop destination for Hindi dubbed anime, movies &amp; series. Watch officially, every time.</p>
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="about.html">About Us</a>
+      <a href="request.html">Request Anime</a>
+      <a href="dmca.html">DMCA</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <p>Stay updated with the latest releases and news.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 <strong>HindiAnimestuff</strong> — All rights reserved.</div>
+</footer>
+
+<nav class="mobile-bottom-nav" id="mobileBottomNav">
+  <a href="/index.html" class="mbn-item active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+    Home
+  </a>
+  <button class="mbn-item" id="mbnTrending" data-scroll="trendingSection">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2s-6 6-6 12a6 6 0 0 0 12 0c0-2-1-3-1-3s-1 2-2 2c1-3-1-6-3-11z"/></svg>
+    Trending
+  </button>
+  <button class="mbn-item" id="mbnSearch">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Search
+  </button>
+  <button class="mbn-item" id="mbnFavorites" data-scroll="favoritesSection">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    Favorites
+  </button>
+  <button class="mbn-item" id="mbnMenu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    Menu
+  </button>
+</nav>
+
+<script src="anime-data.js"></script>
+<script src="movies-data.js"></script>
+<script src="series-data.js"></script>
+<script>
+  // Global States for Pagination & Filtering
+  let currentPage = 1;
+  const itemsPerPage = 12;
+  let activeGenre = 'all';
+  let activeType = 'all'; // 'all' | 'series' | 'movie' — driven by the Anime Series / Anime Movies nav links
+  let finalFilteredItems = [];
+
+  // ---- Favorites (localStorage, per-device) ----
+  function loadFavorites(){
+    try { return JSON.parse(localStorage.getItem('hi_favorites') || '[]'); } catch(e){ return []; }
+  }
+  let FAVORITES = loadFavorites();
+  function saveFavorites(){
+    try { localStorage.setItem('hi_favorites', JSON.stringify(FAVORITES)); } catch(e){}
+  }
+  function isFavorited(id, type){
+    return FAVORITES.some(f => f.id === id && f.type === type);
+  }
+  function toggleFavorite(id, type){
+    const idx = FAVORITES.findIndex(f => f.id === id && f.type === type);
+    if(idx > -1) FAVORITES.splice(idx, 1);
+    else FAVORITES.unshift({ id, type });
+    saveFavorites();
+    document.querySelectorAll(`.poster-fav[data-id="${id}"][data-type="${type}"]`).forEach(btn => {
+      btn.classList.toggle('active', isFavorited(id, type));
+    });
+    renderFavoritesSection();
+  }
+  document.addEventListener('click', e => {
+    const favBtn = e.target.closest('.poster-fav');
+    if(!favBtn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(favBtn.dataset.id, favBtn.dataset.type);
+  });
+
+  // ---- Continue Watching (localStorage) ----
+  // Call window.HI_trackContinueWatching(id, type) from detail pages
+  // (anime-pages/*.html, movies/*.html, series-pages/*.html) on page load
+  // to have a title show up here. type is 'anime' | 'movie' | 'series'.
+  function loadContinueWatching(){
+    try { return JSON.parse(localStorage.getItem('hi_continue') || '[]'); } catch(e){ return []; }
+  }
+  window.HI_trackContinueWatching = function(id, type){
+    let list = loadContinueWatching();
+    list = list.filter(x => !(x.id === id && x.type === type));
+    list.unshift({ id, type, ts: Date.now() });
+    list = list.slice(0, 10);
+    try { localStorage.setItem('hi_continue', JSON.stringify(list)); } catch(e){}
+  };
+
+  // Combined catalog (anime + movies + series) used only while searching, so
+  // the homepage search box can surface all three. Normal browsing below is
+  // untouched and still uses ANIME_DATA only.
+  const ALL_SEARCHABLE_ITEMS = [
+    ...ANIME_DATA.map(a => ({ ...a, _type: 'anime' })),
+    ...((typeof MOVIES_DATA !== 'undefined') ? MOVIES_DATA.map(m => ({ ...m, _type: 'movie' })) : []),
+    ...((typeof SERIES_DATA !== 'undefined') ? SERIES_DATA.map(s => ({ ...s, _type: 'series' })) : [])
+  ];
+
+  const groups = {};
+  const displayTitle = {};
+  ANIME_DATA.forEach(item => {
+    const key = item.franchise || item.title;
+    if(!groups[key]) groups[key] = [];
+    groups[key].push(item);
+    if(!displayTitle[key] || item.title.length < displayTitle[key].length){
+      displayTitle[key] = item.title;
+    }
+  });
+
+  const LATEST_UPLOADS_COUNT = 10;
+  const latestUploads = ANIME_DATA.slice(0, LATEST_UPLOADS_COUNT);
+
+  // ---- Hero: sliding carousel of the top 3 latest uploads ----
+  const heroSlides = latestUploads.slice(0, 3).length ? latestUploads.slice(0, 3) : ANIME_DATA.slice(0, 1);
+  let heroIndex = 0;
+  let heroTimer = null;
+  let heroActiveLayer = 'A';
+  const heroBgLayers = {
+    A: document.getElementById('heroBgA'),
+    B: document.getElementById('heroBgB')
+  };
+  const heroContentEl = document.querySelector('.hero-content');
+  const heroDotsEl = document.getElementById('heroDots');
+
+  function setHeroContent(heroItem){
+    document.getElementById('heroTitle').textContent = `${heroItem.title} — ${heroItem.season}`;
+    const isMulti = (heroItem.language || '').split('·').length > 1;
+    document.getElementById('heroMeta').innerHTML = `
+      <span class="rating">★ ${heroItem.rating}</span>
+      <span class="pill">${isMulti ? 'Multi Audio' : 'Hindi Audio'}</span>
+      <span class="pill">${heroItem.episodes ? heroItem.episodes + ' Episodes' : heroItem.runtime}</span>
+      <span>${(heroItem.genres || []).slice(0,3).join(' · ')}</span>
+    `;
+    document.getElementById('heroActions').innerHTML = `
+      <a class="btn btn-primary" href="anime-pages/${heroItem.id}.html">Download Now ↓</a>
+      <a class="btn btn-ghost" href="anime-pages/${heroItem.id}.html">More Info</a>
+    `;
+  }
+
+  function renderHeroSlide(idx, animateContent){
+    const heroItem = heroSlides[idx];
+    if(!heroItem) return;
+
+    // Crossfade backgrounds: load the image into the hidden layer, then
+    // swap which layer is "active" so the opacity transition is visible.
+    const incoming = heroActiveLayer === 'A' ? heroBgLayers.B : heroBgLayers.A;
+    const outgoing = heroActiveLayer === 'A' ? heroBgLayers.A : heroBgLayers.B;
+    incoming.style.backgroundImage = `linear-gradient(rgba(13,14,18,0.2),rgba(13,14,18,0.2)), url('${heroItem.thumb}')`;
+    incoming.classList.add('active');
+    outgoing.classList.remove('active');
+    heroActiveLayer = heroActiveLayer === 'A' ? 'B' : 'A';
+
+    if(animateContent){
+      heroContentEl.classList.add('fade-out');
+      setTimeout(() => {
+        setHeroContent(heroItem);
+        heroContentEl.classList.remove('fade-out');
+      }, 350);
+    } else {
+      setHeroContent(heroItem);
+    }
+
+    heroDotsEl.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  function goToHeroSlide(idx){
+    heroIndex = idx;
+    renderHeroSlide(heroIndex, true);
+    resetHeroTimer();
+  }
+
+  function resetHeroTimer(){
+    if(heroTimer) clearInterval(heroTimer);
+    if(heroSlides.length > 1){
+      heroTimer = setInterval(() => {
+        heroIndex = (heroIndex + 1) % heroSlides.length;
+        renderHeroSlide(heroIndex, true);
+      }, 5000);
+    }
+  }
+
+  if(heroSlides.length){
+    heroDotsEl.innerHTML = heroSlides.map((_, i) =>
+      `<button class="hero-dot ${i === 0 ? 'active' : ''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`
+    ).join('');
+    heroDotsEl.addEventListener('click', e => {
+      const dot = e.target.closest('.hero-dot');
+      if(!dot) return;
+      goToHeroSlide(parseInt(dot.dataset.i, 10));
+    });
+    renderHeroSlide(0, false);
+    resetHeroTimer();
+  }
+
+  const allGenres = [...new Set(ANIME_DATA.flatMap(a => a.genres))].sort();
+
+  // Filter chips
+  const filterRow = document.getElementById('filterRow');
+  filterRow.innerHTML =
+    `<button class="filter-chip active" data-genre="all">All</button>` +
+    allGenres.map(g => `<button class="filter-chip" data-genre="${g}">${g}</button>`).join('');
+
+  const genreGrid = document.getElementById('genreGrid');
+  function renderGenreGrid(){
+    genreGrid.innerHTML =
+      `<button class="genre-grid-item ${activeGenre==='all' ? 'active' : ''}" data-genre="all">All</button>` +
+      allGenres.map(g => `
+        <button class="genre-grid-item ${activeGenre===g ? 'active' : ''}" data-genre="${g}">${g}</button>
+      `).join('');
+  }
+  renderGenreGrid();
+
+  const genreDrawer = document.getElementById('genreDrawer');
+  const genreDrawerOverlay = document.getElementById('genreDrawerOverlay');
+  function openGenreDrawer(){
+    genreDrawer.classList.add('open');
+    genreDrawerOverlay.classList.add('open');
+  }
+  function closeGenreDrawer(){
+    genreDrawer.classList.remove('open');
+    genreDrawerOverlay.classList.remove('open');
+  }
+  document.getElementById('genreDrawerBtn').addEventListener('click', openGenreDrawer);
+  document.getElementById('genreDrawerClose').addEventListener('click', closeGenreDrawer);
+  genreDrawerOverlay.addEventListener('click', closeGenreDrawer);
+
+  genreGrid.addEventListener('click', e => {
+    const btn = e.target.closest('.genre-grid-item');
+    if(!btn) return;
+    activeGenre = btn.dataset.genre;
+    filterRow.querySelectorAll('.filter-chip').forEach(c => c.classList.toggle('active', c.dataset.genre === activeGenre));
+    renderGenreGrid();
+    currentPage = 1;
+    applyFiltersAndPagination();
+    closeGenreDrawer();
+  });
+
+  // Latest uploads — ranked horizontal row
+  function latestUploadLabel(item){
+    const isMulti = (item.language || '').split('·').length > 1;
+    return `${item.title} ${item.season} · ${isMulti ? 'Multi Audio' : 'Hindi Audio'}`;
+  }
+  document.getElementById('latestUploadsList').innerHTML = latestUploads.map((item, i) => `
+    <a class="rank-item" href="anime-pages/${item.id}.html" title="${latestUploadLabel(item)}">
+      <span class="rank-num">${i+1}</span>
+      <span class="rank-poster">
+        <span class="rank-fallback">${item.season.replace('Season ','S')}</span>
+        <img src="${item.thumb}" alt="${item.title} ${item.season}" loading="lazy" onerror="this.style.display='none'">
+      </span>
+    </a>
+  `).join('');
+
+  const list = document.getElementById('franchiseList');
+
+  function posterCardHTML(item){
+    const isMulti = (item.language || '').split('·').length > 1;
+    return `
+      <a class="poster-card" href="anime-pages/${item.id}.html">
+        <div class="poster-thumb">
+          <span class="poster-fallback">${item.season.replace('Season ', 'S')}</span>
+          <img src="${item.thumb}" alt="${item.title} ${item.season}" loading="lazy"
+               onerror="this.style.display='none'">
+          <span class="poster-dl">↓</span>
+          <span class="poster-status">${item.episodes ? item.episodes + ' EP' : 'HD'}</span>
+          <span class="poster-badge">${isMulti ? 'Multi Audio' : 'Hindi Audio'}</span>
+          <button class="poster-fav ${isFavorited(item.id, 'anime') ? 'active' : ''}" data-id="${item.id}" data-type="anime" aria-label="Toggle favorite">♥</button>
+        </div>
+        <div class="poster-meta">
+          <div class="poster-name">${item.title.length > 34 ? item.title.slice(0,32)+'…' : item.title} <span style="color:var(--text-dim);font-weight:500;">${item.season}</span></div>
+          <div class="poster-foot">
+            <span class="rating">★ ${item.rating}</span>
+            <span>${item.episodes ? item.episodes + ' eps' : item.runtime}</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  // Used only for search results, since a search can match anime, movies, or
+  // series. Also surfaces the genre next to the rating so it's clear what
+  // matched. Normal browsing keeps using posterCardHTML above, untouched.
+  function searchResultCardHTML(item){
+    const isMovie = item._type === 'movie';
+    const isSeries = item._type === 'series';
+    const isMulti = (item.language || '').split('·').length > 1 || (item.language || '').includes('+');
+
+    let linkHref, subLabel, fallbackLabel, metaRight, typeLabel;
+    if(isMovie){
+      linkHref = `movies/${item.id}.html`;
+      subLabel = item.year;
+      fallbackLabel = item.year;
+      metaRight = item.runtime;
+      typeLabel = 'Movie';
+    } else if(isSeries){
+      linkHref = `series-pages/${item.id}.html`;
+      subLabel = `${item.season} · ${item.year}`;
+      fallbackLabel = item.season.replace('Season ', 'S');
+      metaRight = item.runtime;
+      typeLabel = 'Series';
+    } else {
+      linkHref = `anime-pages/${item.id}.html`;
+      subLabel = item.season;
+      fallbackLabel = item.season.replace('Season ', 'S');
+      metaRight = item.episodes ? item.episodes + ' eps' : item.runtime;
+      typeLabel = 'Anime';
+    }
+
+    const genreLabel = (item.genres || [])[0] || '';
+    return `
+      <a class="poster-card" href="${linkHref}">
+        <div class="poster-thumb">
+          <span class="poster-fallback">${fallbackLabel}</span>
+          <img src="${item.thumb}" alt="${item.title}" loading="lazy" onerror="this.style.display='none'">
+          <span class="poster-dl">↓</span>
+          <span class="poster-status">${typeLabel}</span>
+          <span class="poster-badge">${isMulti ? 'Multi Audio' : 'Hindi Audio'}</span>
+          <button class="poster-fav ${isFavorited(item.id, item._type) ? 'active' : ''}" data-id="${item.id}" data-type="${item._type}" aria-label="Toggle favorite">♥</button>
+        </div>
+        <div class="poster-meta">
+          <div class="poster-name">${item.title.length > 34 ? item.title.slice(0,32)+'…' : item.title} <span style="color:var(--text-dim);font-weight:500;">${subLabel}</span></div>
+          <div class="poster-foot">
+            <span class="rating">★ ${item.rating}</span>
+            <span>${metaRight}</span>
+            ${genreLabel ? `<span class="genre-chip-mini">${genreLabel}</span>` : ''}
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  function applyFiltersAndPagination() {
+    const rawQuery = searchInput.value.trim();
+    const query = rawQuery.toLowerCase();
+    const isSearching = query.length > 0;
+
+    // While searching, hide the hero banner and Latest Uploads row so only
+    // the matching items are visible on the page — nothing unrelated shows.
+    document.getElementById('hero').style.display = isSearching ? 'none' : '';
+    document.getElementById('latestSection').style.display = isSearching ? 'none' : '';
+    document.getElementById('trendingSection').style.display = isSearching ? 'none' : '';
+    document.getElementById('topRatedSection').style.display = isSearching ? 'none' : '';
+    document.getElementById('franchisesSection').style.display = (isSearching || !franchiseEntries.length) ? 'none' : '';
+    document.getElementById('browseTitle').textContent = isSearching ? 'Search Results' : 'All Anime';
+
+    // Flat item-level filtering: every season/movie/series-season is its own
+    // card, so the grid never has to reserve a whole row for a franchise that
+    // only has one release — it just flows naturally like a normal grid.
+    // While searching, look across anime, movies AND series so the homepage
+    // search box surfaces all of them. Normal browsing (no query) stays
+    // exactly as before: anime only.
+    const searchPool = isSearching ? ALL_SEARCHABLE_ITEMS : ANIME_DATA;
+    const filteredItems = searchPool.filter(item => {
+      const genreMatch = activeGenre === 'all' || (item.genres || []).includes(activeGenre);
+      const typeMatch = isSearching || activeType === 'all'
+        || (activeType === 'movie' && item.season === 'Movie')
+        || (activeType === 'series' && item.season !== 'Movie' && item.season !== 'Special');
+      const seasonOrYear = item.season || item.year || '';
+      const haystack = `${item.title} ${seasonOrYear} ${item.year || ''} ${(item.genres || []).join(' ')}`.toLowerCase();
+      const textMatch = !isSearching || haystack.includes(query);
+      return genreMatch && typeMatch && textMatch;
+    });
+    finalFilteredItems = filteredItems;
+
+    document.getElementById('browseSub').textContent = isSearching
+      ? `${filteredItems.length} result(s) for "${rawQuery}"`
+      : '';
+
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const itemsToRender = filteredItems.slice(startIndex, endIndex);
+
+    list.innerHTML = '';
+
+    if (itemsToRender.length === 0) {
+      list.innerHTML = `<p class="empty-state">${isSearching ? `No results found for "${rawQuery}".` : 'No anime found matching your criteria.'}</p>`;
+    } else {
+      list.innerHTML = itemsToRender.map(isSearching ? searchResultCardHTML : posterCardHTML).join('');
+    }
+
+    document.getElementById('pageIndicator').innerText = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById('prevPageBtn').disabled = (currentPage === 1);
+    document.getElementById('nextPageBtn').disabled = (currentPage === totalPages);
+  }
+
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    currentPage = 1;
+    applyFiltersAndPagination();
+  });
+
+  // Coming from a movie/anime detail page's search box (?q=...) — prefill
+  // and run the search immediately.
+  (function applyQueryParamSearch(){
+    const q = new URLSearchParams(window.location.search).get('q');
+    if(q){
+      searchInput.value = q;
+      applyFiltersAndPagination();
+    }
+  })();
+
+  filterRow.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-chip');
+    if(!btn) return;
+    filterRow.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    activeGenre = btn.dataset.genre;
+    renderGenreGrid();
+    currentPage = 1;
+    applyFiltersAndPagination();
+  });
+
+  document.getElementById('prevPageBtn').addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      applyFiltersAndPagination();
+      window.scrollTo({ top: document.getElementById('filterRow').offsetTop - 20, behavior: 'smooth' });
+    }
+  });
+
+  document.getElementById('nextPageBtn').addEventListener('click', () => {
+    const totalPages = Math.ceil(finalFilteredItems.length / itemsPerPage) || 1;
+    if (currentPage < totalPages) {
+      currentPage++;
+      applyFiltersAndPagination();
+      window.scrollTo({ top: document.getElementById('filterRow').offsetTop - 20, behavior: 'smooth' });
+    }
+  });
+
+  // Hamburger Menu logic
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    menuPanel.classList.toggle('open');
+  });
+  document.addEventListener('click', e => {
+    if(!menuBtn.contains(e.target) && !menuPanel.contains(e.target)){
+      menuBtn.classList.remove('open');
+      menuPanel.classList.remove('open');
+    }
+  });
+
+  // ---- Navbar counts (Anime / Anime Movies / Movies / Web Series) ----
+  (function setNavCounts(){
+    const animeSeriesCount = ANIME_DATA.filter(a => a.season !== "Movie" && a.season !== "Special").length;
+    const animeMoviesCount = ANIME_DATA.filter(a => a.season === "Movie").length;
+    const moviesCount = (typeof MOVIES_DATA !== 'undefined') ? MOVIES_DATA.length : 0;
+    const seriesCount = (typeof SERIES_DATA !== 'undefined') ? SERIES_DATA.length : 0;
+
+    const set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = `(${val})`; };
+
+    set('cnt-movies-desktop', moviesCount);
+    set('cnt-series-desktop', seriesCount);
+    set('cnt-movies-mobile', moviesCount);
+    set('cnt-series-mobile', seriesCount);
+    set('cnt-animeseries-desktop', animeSeriesCount);
+    set('cnt-animemovies-desktop', animeMoviesCount);
+    set('cnt-animeseries-mobile', animeSeriesCount);
+    set('cnt-animemovies-mobile', animeMoviesCount);
+  })();
+
+  // ---- "Anime Series" / "Anime Movies" nav links ----
+  // Previously these were dead href="#" links that did nothing when clicked.
+  // Now they actually filter the grid below to just anime series or just
+  // anime movies (desktop nav + mobile menu both wired to the same filter).
+  function applyTypeFilter(type){
+    activeType = type;
+    searchInput.value = '';
+    currentPage = 1;
+    applyFiltersAndPagination();
+    menuBtn.classList.remove('open');
+    menuPanel.classList.remove('open');
+    document.getElementById('browseSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  ['cnt-animeseries-link', 'cnt-animeseries-link-m'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('click', e => { e.preventDefault(); applyTypeFilter('series'); });
+  });
+  ['cnt-animemovies-link-d', 'cnt-animemovies-link-m'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('click', e => { e.preventDefault(); applyTypeFilter('movie'); });
+  });
+
+  // ---- Trending Today: blends rating with recency so it differs from both
+  // the plain "Latest Uploads" (recency only) and "Top Rated" (rating only) rows.
+  const trendingItems = ANIME_DATA
+    .map((item, idx) => ({
+      item,
+      score: (parseFloat(item.rating) || 0) + Math.max(0, (30 - idx)) * 0.12
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 12)
+    .map(x => x.item);
+
+  document.getElementById('trendingList').innerHTML = trendingItems.map((item, i) => `
+    <a class="rank-item" href="anime-pages/${item.id}.html" title="${item.title} ${item.season}">
+      <span class="rank-num">${i + 1}</span>
+      <span class="rank-poster">
+        <span class="rank-fallback">${item.season.replace('Season ', 'S')}</span>
+        <img src="${item.thumb}" alt="${item.title} ${item.season}" loading="lazy" onerror="this.style.display='none'">
+      </span>
+    </a>
+  `).join('');
+
+  // ---- Top Rated ----
+  const topRatedItems = [...ANIME_DATA]
+    .sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0))
+    .slice(0, 12);
+  document.getElementById('topRatedList').innerHTML = topRatedItems.map(posterCardHTML).join('');
+
+  // ---- Popular Franchises: reuse the `groups` map already built above for
+  // franchise pagination, keep only multi-season franchises. ----
+  const franchiseEntries = Object.entries(groups)
+    .map(([key, items]) => {
+      const best = items.reduce((a, b) => (parseFloat(b.rating) || 0) > (parseFloat(a.rating) || 0) ? b : a);
+      const avgRating = items.reduce((s, i) => s + (parseFloat(i.rating) || 0), 0) / items.length;
+      return { key, items, best, avgRating };
+    })
+    .filter(f => f.items.length > 1)
+    .sort((a, b) => b.items.length - a.items.length || b.avgRating - a.avgRating)
+    .slice(0, 12);
+
+  const franchisesSection = document.getElementById('franchisesSection');
+  if(!franchiseEntries.length){
+    franchisesSection.style.display = 'none';
+  } else {
+    document.getElementById('franchiseGridList').innerHTML = franchiseEntries.map(f => `
+      <a class="franchise-card" href="anime-pages/${f.best.id}.html">
+        <div class="franchise-poster">
+          <span class="poster-fallback">${displayTitle[f.key]}</span>
+          <img src="${f.best.thumb}" alt="${displayTitle[f.key]}" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="franchise-info">
+          <div class="franchise-name">${displayTitle[f.key]}</div>
+          <div class="franchise-count">${f.items.length} seasons · ★ ${f.avgRating.toFixed(1)}</div>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  // ---- Favorites ----
+  function renderFavoritesSection(){
+    const items = FAVORITES
+      .map(f => ALL_SEARCHABLE_ITEMS.find(it => it.id === f.id && it._type === f.type))
+      .filter(Boolean);
+    const list = document.getElementById('favoritesList');
+    list.innerHTML = items.length
+      ? items.map(searchResultCardHTML).join('')
+      : `<p class="empty-state">No favorites yet — tap the ♥ on any title to save it here.</p>`;
+  }
+  renderFavoritesSection();
+
+  // ---- Continue Watching ----
+  function renderContinueSection(){
+    const stored = loadContinueWatching();
+    const items = stored
+      .map(entry => ALL_SEARCHABLE_ITEMS.find(it => it.id === entry.id && it._type === entry.type))
+      .filter(Boolean);
+    const section = document.getElementById('continueSection');
+    if(!items.length){
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = '';
+    document.getElementById('continueList').innerHTML = items.map(searchResultCardHTML).join('');
+  }
+  renderContinueSection();
+
+  // ---- Mobile bottom nav ----
+  document.querySelectorAll('.mbn-item[data-scroll]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.getElementById(btn.dataset.scroll);
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('mbnSearch').addEventListener('click', e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => searchInput.focus(), 350);
+  });
+  document.getElementById('mbnMenu').addEventListener('click', e => {
+    e.preventDefault();
+    menuBtn.classList.toggle('open');
+    menuPanel.classList.toggle('open');
+  });
+
+  // Initial Run
+  applyFiltersAndPagination();
+</script>
+</body>
+</html>

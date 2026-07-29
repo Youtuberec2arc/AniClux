@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quality Not Available — HindiAnimeStuff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0b0714;
+    --surface:#131120;
+    --line: rgba(255,255,255,0.08);
+    --accent:#8b5cf6;
+    --accent-hi:#b794ff;
+    --bone:#f5f3ff;
+    --bone-dim:#b7b2d6;
+    --gold:#f2b544;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--void);
+    color:var(--bone);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    text-align:center;
+  }
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139,92,246,0.10), transparent 60%);
+    pointer-events:none;
+  }
+  .box{position:relative;max-width:440px;}
+  .icon{font-size:2.6rem;margin-bottom:18px;color:var(--gold);}
+  h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(1.8rem,5vw,2.4rem);
+    letter-spacing:0.02em;
+    margin-bottom:12px;
+  }
+  p{
+    color:var(--bone-dim);
+    font-size:0.95rem;
+    line-height:1.6;
+    margin-bottom:28px;
+  }
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  a.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.9rem;
+    padding:11px 22px;
+    border-radius:7px;
+    transition:all 0.2s ease;
+  }
+  a.btn-primary{background:var(--accent);color:#0c0a0a;}
+  a.btn-primary:hover{background:var(--accent-hi);}
+  a.btn-ghost{background:var(--surface);color:var(--bone);border:1px solid var(--line);}
+  a.btn-ghost:hover{border-color:var(--accent-hi);}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="icon">⚠</div>
+    <h1>This Quality Isn't Available Yet</h1>
+    <p>We haven't uploaded a download link for this print quality yet. Try one of the other available qualities on the details page, or check back soon — new links get added regularly.</p>
+    <div class="actions">
+      <a href="javascript:history.back()" class="btn btn-primary">← Go Back</a>
+      <a href="/index.html" class="btn btn-ghost">Home</a>
+    </div>
+  </div>
+</body>
+</html>
